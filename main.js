@@ -29,7 +29,7 @@ export async function ambildaftarproduk() {
   const cuplikankueri = await getDocs(kueri);
   
   let hasil = [];
-  cuplikankueri.forEach((doc) => {
+  cuplikankueri.forEach((dok) => {
     hasil.push({ 
       id: dok.id, 
       nama: dok.data().nama,
