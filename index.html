@@ -34,6 +34,7 @@
 
 <img src="loader.gif" style="width: 30em; display: block" id="loader">
 
+
 <a href="produk.html">tambah produk</a>
   
   <script type="module">
@@ -52,7 +53,9 @@
       '<td>' + data.nama + '</td>' +
       '<td>' + formatAngka(data.harga) + '</td>' +
       '<td>' + data.stok + '</td>' +
-      '<td>' + '<button class="btn btn-danger tombol-hapus" data="' + data.id + '">hapus</button>' + '</td>' +
+      '<td>' + '<button class="btn btn-danger tombol-hapus" data="' + data.id + '">hapus</button>' + 
+      '<img src="loader.gif" style="width: 3em; display: none" id="' + data.id + '">' +
+      '</td>' +
       '</tr>'
       );
       nomor = nomor + 1;
@@ -61,6 +64,8 @@
     $('#loader').hide();
     
     $('.tombol-hapus').click(async function() {
+      $(this).attr('disabled', 'disabled');
+      $('#' + $(this).attr('data')).show();
       await hapusproduk($(this).attr('data'));
       location.reload();
     });
