@@ -24,6 +24,7 @@
       <th scope="col">Nama Produk</th>
       <th scope="col">harga</th>
       <th scope="col">stok</th>
+      <th scope="col">hapus</th>
     </tr>
   </thead>
   <tbody> 
@@ -36,7 +37,7 @@
 <a href="produk.html">tambah produk</a>
   
   <script type="module">
-    import  {ambildaftarproduk, formatAngka} from './main.js';
+    import  {ambildaftarproduk, formatAngka, hapusproduk} from './main.js';
     
     $(document).ready(async function() {
     let elemendaftar =  $("#daftar-produk > tbody");
@@ -51,12 +52,18 @@
       '<td>' + data.nama + '</td>' +
       '<td>' + formatAngka(data.harga) + '</td>' +
       '<td>' + data.stok + '</td>' +
+      '<td>' + '<button class="btn btn-danger tombol-hapus" data="' + data.id + '">hapus</button>' + '</td>' +
       '</tr>'
       );
       nomor = nomor + 1;
     });
     
     $('#loader').hide();
+    
+    $('.tombol-hapus').click(async function() {
+      await hapusproduk($(this).attr('data'));
+      location.reload();
+    });
     
   });
   </script>
